@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b49">
+<title>WeshEpin.com.tr | Dijital Oyun Mağazası</title>
+<style>
+:root{--bg:#061638;--panel:#0b2454;--panel2:#102f6b;--gold:#ffdf00;--gold2:#ffe95c;--text:#f7f9ff;--muted:#c0cce4;--line:#28477d;--danger:#ff7777}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% -10%,#1a3265 0,transparent 38%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#071b49f2;backdrop-filter:blur(14px);border-bottom:2px solid var(--gold)}.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#ffef72,#ffdf00);color:#071b49;font-weight:1000;font-size:19px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:2px}.nav-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);padding:11px 14px;font-weight:750;transition:.18s}.btn:hover{transform:translateY(-1px);border-color:var(--gold)}.btn.gold{background:linear-gradient(135deg,#ffef72,#ffdf00);color:#08122b;border:0}.cart-count{display:inline-grid;place-items:center;background:var(--gold);color:#151515;border-radius:50%;min-width:22px;height:22px;font-size:12px;margin-left:5px}
+.hero{padding:48px 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}.eyebrow{display:inline-block;color:var(--gold2);border:1px solid #6c5727;background:#2b2414;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:800}h1{font-size:clamp(34px,5vw,58px);line-height:1.03;margin:17px 0}h1 span{color:var(--gold)}.hero p{color:var(--muted);line-height:1.7;max-width:590px}.hero-card{border:1px solid var(--gold);border-radius:22px;padding:25px;background:linear-gradient(145deg,#123779,#081a42);box-shadow:0 18px 60px #0005}.hero-card .big{font-size:46px}.hero-card h3{margin:8px 0;color:var(--gold2)}.hero-card p{font-size:13px}
+.notice{margin:0 0 24px;border:1px solid var(--gold);background:#102c62;color:#ffea65;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.5}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}.search{flex:1;min-width:190px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:12px 14px;outline:none}.search:focus{border-color:var(--gold)}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{padding:10px 13px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-weight:700}.filter.active{background:#173c80;border-color:var(--gold);color:var(--gold2)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 0 15px}.section-head h2{margin:0;font-size:24px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:42px}.product{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;min-height:255px;transition:.2s}.product:hover{transform:translateY(-3px);border-color:var(--gold)}.product-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.product-icon{display:grid;place-items:center;width:54px;height:54px;border-radius:15px;background:#163a7b;font-size:27px}.tag{font-size:10px;letter-spacing:.7px;font-weight:900;color:var(--gold2);background:#16366e;border:1px solid #5578b8;border-radius:99px;padding:5px 8px}.product h3{margin:16px 0 5px;font-size:18px}.product .desc{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 16px;flex:1}.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-size:20px;font-weight:900;color:var(--gold2)}.price small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px}.add{border:0;border-radius:10px;background:var(--gold);color:#17130a;font-weight:900;padding:10px 12px}.verified{display:inline-flex;align-items:center;gap:5px;color:#76f0a0;font-weight:800;font-size:12px}.verified .tick{display:inline-grid;place-items:center;background:#20b765;color:#062b18;border-radius:50%;width:17px;height:17px;font-size:12px}.listing-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 22px}.listing-form .wide{grid-column:1/-1}.listing-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}.listing-card h3{margin:0}.listing-meta{font-size:12px;color:var(--muted)}.listing-actions{display:flex;gap:8px;flex-wrap:wrap}.listing-actions button{flex:1}.seller-tools{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}.empty{grid-column:1/-1;padding:35px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:12px;line-height:1.7}footer strong{color:var(--gold2)}.overlay{position:fixed;inset:0;background:#0009;z-index:20;display:none}.overlay.open{display:block}.drawer{position:fixed;z-index:21;right:0;top:0;height:100%;width:min(430px,100%);background:#081b43;border-left:2px solid var(--gold);padding:22px;transform:translateX(105%);transition:transform .25s;display:flex;flex-direction:column}.drawer.open{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px;gap:10px}.drawer-head h2{margin:0}.icon-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:8px 11px}.cart-items{overflow:auto;flex:1;padding:12px 0}.cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;border-bottom:1px solid var(--line);padding:13px 0}.cart-item h4{margin:0 0 5px;font-size:14px}.cart-item small{color:var(--muted)}.qty{display:flex;gap:7px;align-items:center;margin-top:8px}.qty button{width:27px;height:27px;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:7px}.cart-total{border-top:1px solid var(--line);padding-top:16px}.total-line{display:flex;justify-content:space-between;align-items:center;margin:8px 0}.total-line strong{font-size:23px;color:var(--gold2)}.cart-note{font-size:12px;color:var(--muted);line-height:1.5}.checkout{width:100%;margin-top:12px}.toast{position:fixed;z-index:50;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#102f6b;border:1px solid var(--gold);padding:12px 16px;border-radius:12px;box-shadow:0 8px 30px #0006;transition:.2s;max-width:90%;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-backdrop{position:fixed;inset:0;z-index:40;background:#000b;display:none;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.modal-card{width:min(520px,100%);max-height:90vh;overflow:auto;background:#0b2454;border:1px solid var(--gold);border-radius:20px;padding:20px;box-shadow:0 20px 70px #0008}.modal-body{padding-top:16px}.modal-body label{display:block;margin:12px 0 8px;font-size:13px;color:var(--muted)}.account-tabs{display:flex;gap:8px;margin:12px 0 16px}.account-panel[hidden]{display:none}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:32px}.hero-card{padding:19px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{padding:13px;min-height:260px}.product-bottom{align-items:flex-start;flex-direction:column}.add{width:100%}.nav{padding:11px 0}.brand small{font-size:8px}.btn{padding:10px 11px}}
+@media(max-width:520px){.nav-actions{gap:5px}.nav-actions .btn{font-size:11px;padding:9px 8px}.brand{gap:6px}.logo{width:34px;height:34px}}@media(max-width:420px){.grid{grid-template-columns:1fr}.product{min-height:auto}.product-bottom{flex-direction:row;align-items:center}.add{width:auto}.hero-card .big{font-size:38px}}
+
+/* GAMEPIN VAULT musical welcome screen */
+#gvIntro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 25%,#173b7d 0%,#071638 48%,#020817 100%);transition:opacity .55s ease,visibility .55s ease}
+#gvIntro.gv-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.gv-intro-card{width:min(520px,100%);text-align:center;padding:34px 22px;border:1px solid rgba(255,223,0,.55);border-radius:26px;background:linear-gradient(145deg,rgba(16,47,107,.92),rgba(3,13,35,.96));box-shadow:0 0 55px rgba(255,223,0,.12),0 25px 70px rgba(0,0,0,.45)}
+.gv-mark{width:86px;height:86px;border-radius:24px;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(135deg,#ffdf00,#ffb800);color:#071638;font-size:31px;font-weight:1000;box-shadow:0 0 34px rgba(255,223,0,.25);transform:rotate(-5deg)}
+.gv-intro-card h1{margin:0;color:#ffdf00;font-size:clamp(27px,7vw,42px);letter-spacing:1px;line-height:1.08}.gv-intro-card p{color:#d9e5ff;line-height:1.6;margin:14px auto 24px;max-width:340px}.gv-enter{width:100%;max-width:290px;border:0;border-radius:14px;padding:15px 20px;background:#ffdf00;color:#071638;font-weight:900;font-size:16px;cursor:pointer;box-shadow:0 8px 24px rgba(255,223,0,.18)}.gv-enter:active{transform:scale(.98)}.gv-small{font-size:12px!important;color:#aabbdc!important;margin:14px 0 0!important}
+
+</style>
+</head>
+<body>
+
+<div id="gvIntro" role="dialog" aria-modal="true" aria-label="WeshEpin.com.tr karşılama ekranı">
+ <div class="gv-intro-card">
+  <div class="gv-mark">WE</div>
+  <h1>WeshEpin<br>.com.tr</h1>
+  <p>Oyunun, pazarın, gücün!<br>Sarı-lacivert oyun dünyasına hoş geldin.</p>
+  <button class="gv-enter" id="gvEnter">🎵 Siteye Gir</button>
+  <p class="gv-small">Özgün kısa giriş melodisi · Müzik için düğmeye dokun</p>
+ </div>
+</div>
+
+<header><div class="wrap nav">
+<a class="brand" href="#"><span class="logo">W</span><span>WeshEpin.com.tr<small>DİJİTAL OYUN MAĞAZASI</small></span></a>
+<div class="nav-actions"><button class="btn" id="accountOpen">Üyelik</button><button class="btn" id="ordersOpen">Sipariş takibi</button><button class="btn" id="supabaseOpen">Veritabanı</button><button class="btn" id="cartOpen" aria-label="Sepeti aç">🛒 Sepet <span class="cart-count" id="cartCount">0</span></button></div>
+</div></header>
+<main class="wrap">
+<section class="hero"><div><span class="eyebrow">⚡ OYUN DÜNYANA GÜÇ KAT</span><h1>Dijital ürünler.<br><span>Yeni seviye.</span></h1><p>WeshEpin.com.tr mağaza taslağına hoş geldin. Ürünleri incele, arama yap ve demo sepetine ekle.</p><button class="btn gold" id="explore">Ürünleri keşfet ↓</button></div>
+<div class="hero-card"><div class="big">🎮 💛💙</div><h3>Oyun keyfi tek yerde</h3><p>Modern mağaza arayüzü · Mobil uyumlu · Sepet etkileşimli</p><div class="tag">SARI-LACİVERT TASARIM</div></div></section>
+<div class="notice" id="connectionNotice"><strong>Demo bilgilendirmesi:</strong> Ürünler ve ₺ fiyatları örnektir; gerçek satış fiyatı değildir. Ödeme, gerçek ürün teslimatı veya gerçek sipariş sistemi bağlı değildir. Veritabanı bölümünden Supabase ürünlerini okumayı deneyebilirsin.</div>
+<div class="toolbar"><input class="search" id="search" type="search" placeholder="Ürün ara: UC, VP, oyun pini..." aria-label="Ürün ara"><div class="filters" id="filters"><button class="filter active" data-category="Tümü">Tümü</button><button class="filter" data-category="PUBG Mobile">PUBG Mobile</button><button class="filter" data-category="Valorant">Valorant</button><button class="filter" data-category="Oyun Kartları">Oyun Kartları</button></div></div>
+<div class="section-head"><div><h2>Kullanıcı İlanları</h2><p>Kullanıcıların açtığı ilanlar · demo kayıtları bu telefonda saklanır</p></div><span class="tag" id="listingCount">0 İLAN</span></div><div class="notice">Bu bölüm prototiptir. İlanlar şimdilik yalnızca bu cihazda görünür; gerçek satın alma, ödeme ve teslimat yapılmaz. Yeşil tik gerçek doğrulama anlamına gelmez.</div><form class="listing-form" id="listingForm"><input class="search" id="listingName" required maxlength="70" placeholder="İlan başlığı (ör. oyun kartı)"><input class="search" id="listingPrice" required type="number" min="1" max="1000000" step="0.01" placeholder="Fiyat (₺)"><input class="search wide" id="listingDescription" required maxlength="240" placeholder="Açıklama ve teslimat bilgisi"><input class="search" id="sellerName" required maxlength="35" placeholder="Satıcı görünen adı"><button class="btn gold" type="submit">+ Demo ilanı yayınla</button></form><section class="grid" id="listingGrid"></section><div class="section-head" id="productsTitle"><div><h2>Öne çıkan ürünler</h2><p>Demo ürün kataloğu · Örnek fiyatlar</p></div><span class="tag" id="productCount">6 ÜRÜN</span></div><section class="grid" id="productGrid" aria-live="polite"></section>
+</main>
+<footer><div class="wrap"><strong>WeshEpin.com.tr</strong><br>Bu dosya çalışan bir ön yüz demosudur. Gerçek satış için yetkili tedarik, doğrulanmış fiyatlar, güvenli ödeme sağlayıcısı, sunucu tarafında doğrulanan siparişler ve Türkiye'deki yasal yükümlülüklerin değerlendirilmesi gerekir.</div></footer>
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Sepet"><div class="drawer-head"><h2>Sepetim</h2><div style="display:flex;gap:8px"><button class="icon-btn" id="clearCart">Temizle</button><button class="icon-btn" id="cartClose" aria-label="Sepeti kapat">✕</button></div></div><div class="cart-items" id="cartItems"></div><div class="cart-total"><div class="total-line"><span>Ara toplam (örnek)</span><strong id="cartTotal">₺0,00</strong></div><p class="cart-note">Bu sepet yalnızca demo amaçlıdır. Ödeme alınmaz ve gerçek sipariş oluşturulmaz.</p><button class="btn gold checkout" id="checkout">Demo sipariş adımını dene</button></div></aside>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="supabaseModal" role="dialog" aria-modal="true" aria-labelledby="supabaseTitle"><section class="modal-card"><div class="drawer-head"><h2 id="supabaseTitle">Supabase bağlantısı</h2><button class="icon-btn" data-close-modal="supabaseModal">✕</button></div><div class="modal-body"><p class="cart-note">Bu bölüm sadece ürünleri veritabanından okumayı dener. Yalnızca Publishable/anon anahtarı kullan; secret veya service_role anahtarını asla buraya koyma.</p><label for="supabaseUrlInput">Supabase Project URL</label><input class="search" id="supabaseUrlInput" type="url" placeholder="https://proje-id.supabase.co" style="width:100%;margin-bottom:10px"><label for="supabaseKeyInput">Publishable key</label><input class="search" id="supabaseKeyInput" type="password" placeholder="sb_publishable_…" style="width:100%"><button class="btn gold checkout" id="saveSupabaseKey">Bu telefonda kaydet ve bağlan</button><button class="btn checkout" id="removeSupabaseKey">Kaydedilen bağlantı bilgilerini sil</button><p class="cart-note" id="supabaseStatus" role="status">Bağlantı henüz denenmedi.</p></div></section></div>
+<div class="modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><section class="modal-card"><div class="drawer-head"><h2 id="accountTitle">WeshEpin.com.tr üyeliği</h2><button class="icon-btn" data-close-modal="accountModal">✕</button></div><div class="modal-body"><p class="cart-note">Gerçek hesap açma ve giriş, aşağıda ayarlayacağın Supabase projesi üzerinden yapılır. Şifreni yalnızca bu giriş formuna gir; kimseyle paylaşma.</p><div id="authSignedOut"><div class="account-tabs"><button class="btn gold" id="authShowLogin" type="button">Giriş yap</button><button class="btn" id="authShowSignup" type="button">Hesap oluştur</button></div><label for="authEmail">E-posta</label><input class="search" id="authEmail" type="email" autocomplete="email" placeholder="ornek@eposta.com" style="width:100%"><label for="authPassword">Şifre (en az 8 karakter önerilir)</label><input class="search" id="authPassword" type="password" autocomplete="current-password" placeholder="Şifren" style="width:100%"><button class="btn gold checkout" id="authSubmit" type="button">Giriş yap</button><button class="btn checkout" id="authReset" type="button">Şifremi sıfırla</button></div><div id="authSignedIn" hidden><p class="notice">Giriş yaptın: <strong id="authUserEmail"></strong></p><button class="btn gold checkout" id="authLogout" type="button">Güvenli çıkış yap</button></div><p class="cart-note" id="authStatus" role="status" aria-live="polite">Önce Veritabanı bölümünden Supabase Project URL ve Publishable key kaydetmelisin.</p><p class="cart-note">Bu üyelik yalnızca kimlik doğrulamasıdır; ödeme, sipariş, ilan sahipliği ve satıcı rozeti otomatik olarak etkinleşmez.</p></div></section></div>
+<div class="modal-backdrop" id="ordersModal" role="dialog" aria-modal="true" aria-labelledby="ordersTitle"><section class="modal-card"><div class="drawer-head"><h2 id="ordersTitle">Sipariş takibi</h2><button class="icon-btn" data-close-modal="ordersModal">✕</button></div><div class="modal-body"><p class="notice">Gerçek sipariş kaydı bağlı değil. Bu alan şu anda sipariş sorgulamaz.</p><label for="demoOrderNo">Örnek sipariş numarası</label><input class="search" id="demoOrderNo" placeholder="GV-DEMO-001" style="width:100%"><button class="btn gold checkout" id="trackDemoOrder">Durumu kontrol et</button></div></section></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
+const demoProducts=[
+{id:1,name:"PUBG Mobile UC",detail:"60 UC · örnek paket",price:49.90,category:"PUBG Mobile",icon:"🎯",tag:"ÖRNEK",isExample:true},
+{id:2,name:"PUBG Mobile UC",detail:"325 UC · örnek paket",price:219.90,category:"PUBG Mobile",icon:"🪙",tag:"ÖRNEK",isExample:true},
+{id:3,name:"PUBG Mobile UC",detail:"660 UC · örnek paket",price:429.90,category:"PUBG Mobile",icon:"💠",tag:"ÖRNEK",isExample:true},
+{id:4,name:"VALORANT VP",detail:"475 VP · örnek paket",price:59.90,category:"Valorant",icon:"🎯",tag:"ÖRNEK",isExample:true},
+{id:5,name:"VALORANT VP",detail:"1000 VP · örnek paket",price:119.90,category:"Valorant",icon:"⚔️",tag:"ÖRNEK",isExample:true},
+{id:6,name:"Dijital Oyun Kartı",detail:"Örnek dijital kart ürünü",price:100,category:"Oyun Kartları",icon:"🎁",tag:"ÖRNEK",isExample:true}
+];
+let products=[...demoProducts],cart=[],activeCategory="Tümü";
+let listings=[]; try{listings=JSON.parse(localStorage.getItem("gamepinVaultDemoListings")||"[]");if(!Array.isArray(listings))listings=[];}catch(_){listings=[];}
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat("tr-TR",{style:"currency",currency:"TRY"}).format(n);
+function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2600)}
+function renderProducts(){const q=$("search").value.trim().toLocaleLowerCase("tr-TR");const list=products.filter(p=>(activeCategory==="Tümü"||p.category===activeCategory)&&`${p.name} ${p.detail} ${p.category}`.toLocaleLowerCase("tr-TR").includes(q));$("productCount").textContent=list.length+" ÜRÜN";const grid=$("productGrid");grid.innerHTML="";if(!list.length){grid.innerHTML='<div class="empty">Bu aramayla eşleşen ürün bulunamadı.</div>';return}for(const p of list){const card=document.createElement("article");card.className="product";const top=document.createElement("div");top.className="product-top";const icon=document.createElement("div");icon.className="product-icon";icon.textContent=p.icon||"🎮";const tag=document.createElement("span");tag.className="tag";tag.textContent=p.isExample?"ÖRNEK FİYAT":(p.tag||"ÜRÜN");top.append(icon,tag);const h=document.createElement("h3");h.textContent=p.name;const d=document.createElement("p");d.className="desc";d.textContent=p.detail;const bottom=document.createElement("div");bottom.className="product-bottom";const price=document.createElement("div");price.className="price";price.textContent=money(p.price);const small=document.createElement("small");small.textContent=p.isExample?"Satışa açık değil · örnek fiyat":"Fiyatın doğrulanması gerekir";price.appendChild(small);const add=document.createElement("button");add.className="add";add.textContent="Sepete ekle";add.addEventListener("click",()=>addToCart(p.id));bottom.append(price,add);card.append(top,h,d,bottom);grid.appendChild(card)}}
+function saveCart(){try{localStorage.setItem("gamepinVaultDemoCart",JSON.stringify(cart))}catch(_){}}
+function addToCart(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;if(p.isExample){toast("Bu örnek ürün gerçek satışa açık değil; demo sepetine ekleniyor.")}const item=cart.find(x=>String(x.id)===String(id));if(item)item.qty++;else cart.push({id:p.id,qty:1});saveCart();renderCart()}
+function changeQty(id,delta){const item=cart.find(x=>String(x.id)===String(id));if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>String(x.id)!==String(id));saveCart();renderCart()}
+function renderCart(){const root=$("cartItems");root.innerHTML="";let total=0,count=0;cart.forEach(item=>{const p=products.find(x=>String(x.id)===String(item.id));if(!p)return;total+=p.price*item.qty;count+=item.qty;const row=document.createElement("div");row.className="cart-item";const left=document.createElement("div");const h=document.createElement("h4");h.textContent=p.name;const small=document.createElement("small");small.textContent=p.detail+" · "+money(p.price)+" (örnek)";left.append(h,small);const qty=document.createElement("div");qty.className="qty";const minus=document.createElement("button");minus.textContent="−";minus.setAttribute("aria-label","Bir azalt");minus.onclick=()=>changeQty(item.id,-1);const n=document.createElement("span");n.textContent=item.qty;const plus=document.createElement("button");plus.textContent="+";plus.setAttribute("aria-label","Bir artır");plus.onclick=()=>changeQty(item.id,1);qty.append(minus,n,plus);left.appendChild(qty);const remove=document.createElement("button");remove.className="icon-btn";remove.textContent="Sil";remove.onclick=()=>{cart=cart.filter(x=>String(x.id)!==String(item.id));saveCart();renderCart()};row.append(left,remove);root.appendChild(row)});if(!cart.length)root.innerHTML='<div class="empty">Sepetin şimdilik boş.</div>';$("cartCount").textContent=count;$("cartTotal").textContent=money(total)}
+function openDrawer(){$("overlay").classList.add("open");$("drawer").classList.add("open")}
+function closeDrawer(){$("overlay").classList.remove("open");$("drawer").classList.remove("open")}
+function openModal(id){$(id).classList.add("open")}
+function closeModal(id){$(id).classList.remove("open")}
+function saveListings(){try{localStorage.setItem("gamepinVaultDemoListings",JSON.stringify(listings));}catch(_){}}
+function renderListings(){
+ const grid=$("listingGrid");grid.innerHTML="";$("listingCount").textContent=listings.length+" İLAN";
+ if(!listings.length){grid.innerHTML='<div class="empty">Henüz kullanıcı ilanı yok. İlk demo ilanını sen oluşturabilirsin.</div>';return;}
+ listings.forEach(item=>{
+  const card=document.createElement("article");card.className="listing-card";
+  const head=document.createElement("div");head.className="product-top";
+  const badge=document.createElement("span");badge.className="tag";badge.textContent="KULLANICI İLANI";head.appendChild(badge);
+  const title=document.createElement("h3");title.textContent=item.name;
+  const seller=document.createElement("div");seller.className="listing-meta";seller.textContent="Satıcı: "+item.seller;
+  if(item.verified){const v=document.createElement("span");v.className="verified";v.innerHTML='<span class="tick">✓</span> Yetkili Satıcı (DEMO)';seller.append(" · ",v);}
+  const desc=document.createElement("p");desc.className="desc";desc.textContent=item.description;
+  const price=document.createElement("div");price.className="price";price.textContent=money(item.price);
+  const priceNote=document.createElement("small");priceNote.textContent="Örnek fiyat · gerçek satış değil";price.appendChild(priceNote);
+  const actions=document.createElement("div");actions.className="listing-actions";
+  const buy=document.createElement("button");buy.className="btn gold";buy.textContent="Demo satın al";buy.onclick=()=>toast("Demo: ödeme alınmadı, ilan satın alınmadı.");
+  const verify=document.createElement("button");verify.className="btn";verify.textContent=item.verified?"Demo tiki kaldır":"Demo satışı doğrula";verify.onclick=()=>{item.verified=!item.verified;saveListings();renderListings();toast("Yalnızca demo rozeti değişti; gerçek doğrulama yapılmadı.");};
+  actions.append(buy,verify);const tools=document.createElement("div");tools.className="seller-tools";tools.textContent="Rozet denemesi: gerçek yetkili satıcı rozeti için sunucu tarafında doğrulanmış ödeme, teslimat ve satıcı kontrolleri gerekir.";
+  card.append(head,title,seller,desc,price,actions,tools);grid.appendChild(card);
+ });
+}
+$("listingForm").addEventListener("submit",e=>{e.preventDefault();const name=$("listingName").value.trim(),description=$("listingDescription").value.trim(),seller=$("sellerName").value.trim(),price=Number($("listingPrice").value);if(!name||!description||!seller||!Number.isFinite(price)||price<=0){toast("Lütfen tüm alanları doğru doldur.");return;}listings.unshift({id:Date.now(),name,description,seller,price,verified:false});saveListings();renderListings();e.target.reset();toast("Demo ilanı bu telefona eklendi.");});
+$("explore").onclick=()=>$("productsTitle").scrollIntoView({behavior:"smooth"});
+$("cartOpen").onclick=openDrawer;$("cartClose").onclick=closeDrawer;$("overlay").onclick=closeDrawer;
+$("clearCart").onclick=()=>{cart=[];saveCart();renderCart();toast("Demo sepeti temizlendi.")};
+$("checkout").onclick=()=>toast("Ödeme bağlı değil. Gerçek sipariş oluşturulmadı.");
+$("search").addEventListener("input",renderProducts);
+$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;activeCategory=b.dataset.category;document.querySelectorAll("[data-category]").forEach(x=>x.classList.toggle("active",x===b));renderProducts()});
+$("accountOpen").onclick=()=>{openModal("accountModal");refreshAuthState()};$("ordersOpen").onclick=()=>openModal("ordersModal");$("supabaseOpen").onclick=()=>openModal("supabaseModal");
+document.querySelectorAll("[data-close-modal]").forEach(b=>b.onclick=()=>closeModal(b.dataset.closeModal));
+document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+$("trackDemoOrder").onclick=()=>toast("Sipariş takip sistemi henüz bağlı değil.");
+const URL_STORAGE="gamepinVaultSupabaseProjectUrl",KEY_STORAGE="gamepinVaultSupabasePublishableKey";
+try{$("supabaseUrlInput").value=localStorage.getItem(URL_STORAGE)||"";$("supabaseKeyInput").value=localStorage.getItem(KEY_STORAGE)||"";const saved=JSON.parse(localStorage.getItem("gamepinVaultDemoCart")||"[]");if(Array.isArray(saved))cart=saved.filter(x=>x&&x.id!=null&&Number.isInteger(x.qty)&&x.qty>0)}catch(_){}
+function normalizeCategory(game){const g=String(game||"").toLocaleLowerCase("tr-TR");if(g.includes("pubg"))return "PUBG Mobile";if(g.includes("valorant"))return "Valorant";if(g.includes("kart"))return "Oyun Kartları";return "Oyun Kartları"}
+function categoryIcon(game){const g=String(game||"").toLocaleLowerCase("tr-TR");if(g.includes("pubg"))return "🎯";if(g.includes("valorant"))return "⚔️";return "🎮"}
+$("saveSupabaseKey").onclick=async()=>{const status=$("supabaseStatus"),projectUrl=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(projectUrl)){status.textContent="Project URL biçimi hatalı. https://proje-id.supabase.co şeklinde olmalı.";return}if(!key||!(/^(sb_publishable_|eyJ)/.test(key))){status.textContent="Publishable key veya eski anon/public key gir. Secret/service_role anahtarı kullanma.";return}status.textContent="Ürünler okunuyor…";try{const res=await fetch(projectUrl+"/rest/v1/products?select=id,name,game,description,price_try,is_example_price,is_active&is_active=eq.true&order=name.asc",{headers:{apikey:key,Authorization:"Bearer "+key}});if(!res.ok)throw new Error("HTTP "+res.status+" — "+(await res.text()).slice(0,150));const rows=await res.json();products=rows.map(r=>({id:String(r.id),name:String(r.name||"Oyun ürünü"),detail:String(r.description||r.game||"Dijital ürün"),price:Number(r.price_try)||0,category:normalizeCategory(r.game),icon:categoryIcon(r.game),tag:r.is_example_price?"ÖRNEK":"ÜRÜN",isExample:Boolean(r.is_example_price)}));cart=cart.filter(x=>products.some(p=>String(p.id)===String(x.id)));renderProducts();renderCart();renderListings();localStorage.setItem(URL_STORAGE,projectUrl);localStorage.setItem(KEY_STORAGE,key);status.textContent="Bağlantı başarılı. "+rows.length+" aktif ürün okundu. Bu, ödeme veya sipariş bağlantısı değildir."; $("connectionNotice").innerHTML="<strong>Durum:</strong> Supabase ürün bağlantısı başarılı. Örnek fiyatlı ürünler satışa açık değildir; ödeme ve sipariş sistemi bağlı değil."}catch(err){status.textContent="Bağlantı başarısız: "+err.message+". URL/key eşleşmesini, tablo sütunlarını ve RLS politikasını kontrol et."}};
+$("removeSupabaseKey").onclick=()=>{try{localStorage.removeItem(URL_STORAGE);localStorage.removeItem(KEY_STORAGE)}catch(_){}$("supabaseUrlInput").value="";$("supabaseKeyInput").value="";$("supabaseStatus").textContent="Kaydedilen bağlantı bilgileri bu tarayıcıdan silindi."};
+// Supabase Auth üyelik akışı: hesap bilgileri sunucuya gönderilir; şifre localStorage'a yazılmaz.
+let authClient=null,authMode="login";
+function setAuthStatus(message){$("authStatus").textContent=message}
+function getAuthClient(){
+ if(!window.supabase||!window.supabase.createClient){setAuthStatus("Güvenli üyelik bileşeni yüklenemedi. İnternet bağlantını kontrol et.");return null}
+ const url=(localStorage.getItem(URL_STORAGE)||$("supabaseUrlInput").value||"").trim().replace(/\/$/,"");
+ const key=(localStorage.getItem(KEY_STORAGE)||$("supabaseKeyInput").value||"").trim();
+ if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)||!key||!(/^(sb_publishable_|eyJ)/.test(key))){setAuthStatus("Önce Veritabanı bölümünden aynı Supabase projesinin Project URL ve Publishable/anon key bilgisini kaydet.");return null}
+ if(!authClient)authClient=window.supabase.createClient(url,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ return authClient;
+}
+function setAuthMode(mode){authMode=mode;$("authSubmit").textContent=mode==="signup"?"Hesap oluştur":"Giriş yap";$("authShowLogin").classList.toggle("gold",mode==="login");$("authShowSignup").classList.toggle("gold",mode==="signup");$("authPassword").autocomplete=mode==="signup"?"new-password":"current-password";setAuthStatus(mode==="signup"?"E-posta doğrulaması istenebilir; gelen kutunu kontrol et.":"Supabase hesabınla giriş yap.")}
+async function refreshAuthState(){const c=getAuthClient();if(!c)return;try{const {data,error}=await c.auth.getSession();if(error)throw error;const user=data.session?.user;$("authSignedOut").hidden=!!user;$("authSignedIn").hidden=!user;if(user){$("authUserEmail").textContent=user.email||"Giriş yapan kullanıcı";setAuthStatus("Oturum açık.")}else setAuthStatus("Giriş yapabilir veya yeni hesap oluşturabilirsin.")}catch(e){setAuthStatus("Oturum kontrol edilemedi: "+e.message)}}
+$("authShowLogin").onclick=()=>setAuthMode("login");$("authShowSignup").onclick=()=>setAuthMode("signup");
+$("authSubmit").onclick=async()=>{const c=getAuthClient();if(!c)return;const email=$("authEmail").value.trim(),password=$("authPassword").value;if(!email||!password){setAuthStatus("E-posta ve şifre alanlarını doldur.");return}if(authMode==="signup"&&password.length<8){setAuthStatus("Daha güvenli olması için en az 8 karakterli şifre kullan.");return}$("authSubmit").disabled=true;setAuthStatus("İşleniyor…");try{let result;if(authMode==="signup")result=await c.auth.signUp({email,password});else result=await c.auth.signInWithPassword({email,password});if(result.error)throw result.error;if(authMode==="signup"&&!result.data.session){setAuthStatus("Hesap isteği alındı. E-posta doğrulaması açıksa gelen kutundaki bağlantıya tıkla, sonra giriş yap.")}else{setAuthStatus(authMode==="signup"?"Hesap oluşturuldu ve oturum açıldı.":"Giriş başarılı.");await refreshAuthState()}}catch(e){setAuthStatus("İşlem başarısız: "+e.message)}finally{$("authSubmit").disabled=false}};
+$("authReset").onclick=async()=>{const c=getAuthClient();if(!c)return;const email=$("authEmail").value.trim();if(!email){setAuthStatus("Şifre sıfırlama bağlantısı için önce e-posta adresini yaz.");return}try{const {error}=await c.auth.resetPasswordForEmail(email);if(error)throw error;setAuthStatus("Şifre sıfırlama isteği gönderildi. E-postanı kontrol et.")}catch(e){setAuthStatus("İstek başarısız: "+e.message)}};
+$("authLogout").onclick=async()=>{const c=getAuthClient();if(!c)return;try{const {error}=await c.auth.signOut();if(error)throw error;await refreshAuthState();setAuthStatus("Güvenli çıkış yapıldı.")}catch(e){setAuthStatus("Çıkış yapılamadı: "+e.message)}};
+
+renderProducts();renderCart();
+
+// Kısa, özgün tarayıcı melodisi; harici şarkı veya telifli kayıt kullanmaz.
+(function(){
+ const intro=document.getElementById('gvIntro');
+ const enter=document.getElementById('gvEnter');
+ let audioCtx=null, musicOn=true;
+ function playWelcomeTune(){
+   const AudioContext=window.AudioContext||window.webkitAudioContext;
+   if(!AudioContext) return;
+   try{
+     audioCtx=new AudioContext();
+     const notes=[523.25,659.25,783.99,659.25,880,783.99,659.25,783.99];
+     const start=audioCtx.currentTime+0.04;
+     notes.forEach((freq,i)=>{
+       const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
+       osc.type='triangle'; osc.frequency.value=freq;
+       const t=start+i*0.19;
+       gain.gain.setValueAtTime(0.0001,t);
+       gain.gain.exponentialRampToValueAtTime(0.075,t+0.025);
+       gain.gain.exponentialRampToValueAtTime(0.0001,t+0.17);
+       osc.connect(gain);gain.connect(audioCtx.destination);
+       osc.start(t);osc.stop(t+0.18);
+     });
+   }catch(e){/* Tarayıcı ses desteği yoksa site yine açılır. */}
+ }
+ enter.addEventListener('click',function(){
+   playWelcomeTune();
+   intro.classList.add('gv-hidden');
+   window.setTimeout(()=>intro.remove(),650);
+ });
+})();
+
+</script>
+</body>
+</html>
