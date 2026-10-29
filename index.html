@@ -56,7 +56,11 @@ footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);f
 <div class="toast" id="toast" role="status"></div>
 <div class="modal-backdrop" id="supabaseModal" role="dialog" aria-modal="true" aria-labelledby="supabaseTitle"><section class="modal-card"><div class="drawer-head"><h2 id="supabaseTitle">Supabase bağlantısı</h2><button class="icon-btn" data-close-modal="supabaseModal">✕</button></div><div class="modal-body"><p class="cart-note">Bu bölüm sadece ürünleri veritabanından okumayı dener. Yalnızca Publishable/anon anahtarı kullan; secret veya service_role anahtarını asla buraya koyma.</p><label for="supabaseUrlInput">Supabase Project URL</label><input class="search" id="supabaseUrlInput" type="url" placeholder="https://proje-id.supabase.co" style="width:100%;margin-bottom:10px"><label for="supabaseKeyInput">Publishable key</label><input class="search" id="supabaseKeyInput" type="password" placeholder="sb_publishable_…" style="width:100%"><button class="btn gold checkout" id="saveSupabaseKey">Bu telefonda kaydet ve bağlan</button><button class="btn checkout" id="removeSupabaseKey">Kaydedilen bağlantı bilgilerini sil</button><p class="cart-note" id="supabaseStatus" role="status">Bağlantı henüz denenmedi.</p></div></section></div>
 <div class="modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><section class="modal-card"><div class="drawer-head"><h2 id="accountTitle">WeshEpin.com.tr üyeliği</h2><button class="icon-btn" data-close-modal="accountModal">✕</button></div><div class="modal-body"><p class="cart-note">Gerçek hesap açma ve giriş, aşağıda ayarlayacağın Supabase projesi üzerinden yapılır. Şifreni yalnızca bu giriş formuna gir; kimseyle paylaşma.</p><div id="authSignedOut"><div class="account-tabs"><button class="btn gold" id="authShowLogin" type="button">Giriş yap</button><button class="btn" id="authShowSignup" type="button">Hesap oluştur</button></div><label for="authEmail">E-posta</label><input class="search" id="authEmail" type="email" autocomplete="email" placeholder="ornek@eposta.com" style="width:100%"><label for="authPassword">Şifre (en az 8 karakter önerilir)</label><input class="search" id="authPassword" type="password" autocomplete="current-password" placeholder="Şifren" style="width:100%"><button class="btn gold checkout" id="authSubmit" type="button">Giriş yap</button><button class="btn checkout" id="authReset" type="button">Şifremi sıfırla</button></div><div id="authSignedIn" hidden><p class="notice">Giriş yaptın: <strong id="authUserEmail"></strong></p><button class="btn gold checkout" id="authLogout" type="button">Güvenli çıkış yap</button></div><p class="cart-note" id="authStatus" role="status" aria-live="polite">Önce Veritabanı bölümünden Supabase Project URL ve Publishable key kaydetmelisin.</p><p class="cart-note">Bu üyelik yalnızca kimlik doğrulamasıdır; ödeme, sipariş, ilan sahipliği ve satıcı rozeti otomatik olarak etkinleşmez.</p></div></section></div>
-<div class="modal-backdrop" id="ordersModal" role="dialog" aria-modal="true" aria-labelledby="ordersTitle"><section class="modal-card"><div class="drawer-head"><h2 id="ordersTitle">Sipariş takibi</h2><button class="icon-btn" data-close-modal="ordersModal">✕</button></div><div class="modal-body"><p class="notice">Gerçek sipariş kaydı bağlı değil. Bu alan şu anda sipariş sorgulamaz.</p><label for="demoOrderNo">Örnek sipariş numarası</label><input class="search" id="demoOrderNo" placeholder="GV-DEMO-001" style="width:100%"><button class="btn gold checkout" id="trackDemoOrder">Durumu kontrol et</button></div></section></div>
+<div class="modal-backdrop" id="ordersModal" role="dialog" aria-modal="true" aria-labelledby="ordersTitle"><section class="modal-card"><div class="drawer-head"><h2 id="ordersTitle">Sipariş Geçmişim</h2><button class="icon-btn" data-close-modal="ordersModal">✕</button></div><div class="modal-body">
+<p class="notice">Demo siparişleri bu telefondaki tarayıcıda saklanır. Ödeme alınmaz.</p>
+<button class="btn gold checkout" id="refreshDemoOrders">Sipariş geçmişini yenile</button>
+<div id="demoOrderHistory" style="margin-top:16px"></div>
+</div>/button></div></section></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 "use strict";
@@ -171,6 +175,49 @@ renderProducts();renderCart();
  });
 })();
 
+</script><script>
+function renderDemoOrderHistory() {
+  const root = document.getElementById("demoOrderHistory");
+  if (!root) return;
+
+  let orders = [];
+  try {
+    orders = JSON.parse(localStorage.getItem("weshepin_demo_orders") || "[]");
+  } catch (e) {}
+
+  root.innerHTML = "";
+
+  if (!orders.length) {
+    root.textContent = "Henüz demo siparişin yok.";
+    return;
+  }
+
+  orders.forEach(order => {
+    const card = document.createElement("div");
+    card.style.cssText = "padding:12px;margin:10px 0;border:1px solid #c9a227;border-radius:10px";
+
+    const title = document.createElement("h3");
+    title.textContent = order.id || "Demo sipariş";
+
+    const date = document.createElement("p");
+    date.textContent = order.date || "";
+
+    const status = document.createElement("p");
+    status.textContent = order.status || "Demo sipariş — ödeme alınmadı";
+
+    const items = document.createElement("p");
+    items.textContent = (order.items || []).map(i => i.name + " × " + i.qty).join(", ");
+
+    card.append(title, date, status, items);
+    root.appendChild(card);
+  });
+}
+
+document.getElementById("ordersOpen").addEventListener("click", function() {
+  setTimeout(renderDemoOrderHistory, 50);
+});
+
+document.getElementById("refreshDemoOrders").addEventListener("click", renderDemoOrderHistory);
 </script>
 </body>
 </html>
