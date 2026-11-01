@@ -5,92 +5,718 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071b49">
 <title>WeshEpin | Dijital Oyun Mağazası</title>
+
 <style>
-:root{--bg:#061638;--panel:#0b2454;--panel2:#102f6b;--gold:#ffdf00;--gold2:#ffe95c;--text:#f7f9ff;--muted:#c0cce4;--line:#28477d}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% -10%,#1a3265 0,transparent 38%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;background:#071b49f2;backdrop-filter:blur(14px);border-bottom:2px solid var(--gold)}.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#ffef72,#ffdf00);color:#071b49;font-weight:1000;font-size:19px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:2px}.nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.btn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);padding:10px 13px;font-weight:750}.btn:hover{border-color:var(--gold)}.btn.gold{background:linear-gradient(135deg,#ffef72,#ffdf00);color:#08122b;border:0}.cart-count{display:inline-grid;place-items:center;background:var(--gold);color:#151515;border-radius:50%;min-width:22px;height:22px;font-size:12px;margin-left:5px}
-.hero{padding:44px 0 28px;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}.eyebrow{display:inline-block;color:var(--gold2);border:1px solid #6c5727;background:#2b2414;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:800}h1{font-size:clamp(34px,5vw,58px);line-height:1.03;margin:17px 0}h1 span{color:var(--gold)}.hero p{color:var(--muted);line-height:1.7}.hero-card{border:1px solid var(--gold);border-radius:22px;padding:25px;background:linear-gradient(145deg,#123779,#081a42)}.hero-card .big{font-size:46px}.hero-card h3{margin:8px 0;color:var(--gold2)}
-.notice{margin:0 0 20px;border:1px solid var(--gold);background:#102c62;color:#ffea65;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.5}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}.search,.field{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:12px 14px;outline:none}.search{flex:1;min-width:190px}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-weight:700}.filter.active{background:#173c80;border-color:var(--gold);color:var(--gold2)}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 0 15px}.section-head h2{margin:0;font-size:24px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:35px}.product,.listing-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:17px;display:flex;flex-direction:column;min-height:240px}.product-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.product-icon{display:grid;place-items:center;width:54px;height:54px;border-radius:15px;background:#163a7b;font-size:27px}.tag{font-size:10px;letter-spacing:.7px;font-weight:900;color:var(--gold2);background:#16366e;border:1px solid #5578b8;border-radius:99px;padding:5px 8px}.product h3{margin:16px 0 5px;font-size:18px}.desc{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 15px;flex:1}.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-size:20px;font-weight:900;color:var(--gold2)}.price small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px}.add{border:0;border-radius:10px;background:var(--gold);color:#17130a;font-weight:900;padding:10px 12px}.empty{grid-column:1/-1;padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
-.listing-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 20px}.wide{grid-column:1/-1}.listing-card{min-height:0;gap:9px}.listing-card h3{margin:0}.muted{font-size:12px;color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:12px;line-height:1.7}footer strong{color:var(--gold2)}
-.overlay{position:fixed;inset:0;background:#0009;z-index:20;display:none}.overlay.open{display:block}.drawer{position:fixed;z-index:21;right:0;top:0;height:100%;width:min(430px,100%);background:#081b43;border-left:2px solid var(--gold);padding:20px;transform:translateX(105%);transition:transform .25s;display:flex;flex-direction:column}.drawer.open{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px;gap:10px}.drawer-head h2{margin:0}.icon-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:8px 11px}.cart-items{overflow:auto;flex:1;padding:12px 0}.cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;border-bottom:1px solid var(--line);padding:13px 0}.cart-item h4{margin:0 0 5px;font-size:14px}.qty{display:flex;gap:7px;align-items:center;margin-top:8px}.qty button{width:28px;height:28px;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:7px}.cart-total{border-top:1px solid var(--line);padding-top:14px}.total-line{display:flex;justify-content:space-between;align-items:center;margin:8px 0}.total-line strong{font-size:23px;color:var(--gold2)}.cart-note{font-size:12px;color:var(--muted);line-height:1.5}.checkout{width:100%;margin-top:10px}
-.toast{position:fixed;z-index:50;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#102f6b;border:1px solid var(--gold);padding:12px 16px;border-radius:12px;transition:.2s;max-width:90%;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}
-.modal-backdrop{position:fixed;inset:0;z-index:40;background:#000b;display:none;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.modal-card{width:min(520px,100%);max-height:90vh;overflow:auto;background:#0b2454;border:1px solid var(--gold);border-radius:20px;padding:20px}.modal-body{padding-top:14px}.modal-body label{display:block;margin:12px 0 7px;font-size:13px;color:var(--muted)}.modal-body .field{margin-bottom:5px}.history-card{padding:14px;margin:12px 0;border:1px solid var(--gold);border-radius:14px;background:#102f6b}
-#intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 25%,#173b7d,#071638 55%,#020817);transition:opacity .4s}.intro-card{width:min(520px,100%);text-align:center;padding:34px 22px;border:1px solid #ffdf0088;border-radius:26px;background:linear-gradient(145deg,#102f6bee,#030d23f5)}.intro-mark{width:86px;height:86px;border-radius:24px;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(135deg,#ffdf00,#ffb800);color:#071638;font-size:31px;font-weight:1000}.intro-card h2{margin:0;color:var(--gold);font-size:clamp(27px,7vw,42px)}.intro-card p{color:#d9e5ff;line-height:1.6}.intro-card .btn{width:min(290px,100%);padding:15px}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:30px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{padding:13px}.product-bottom{align-items:flex-start;flex-direction:column}.add{width:100%}.nav{align-items:flex-start;flex-direction:column}.nav-actions{justify-content:flex-start}.listing-form{grid-template-columns:1fr}.wide{grid-column:auto}}
-@media(max-width:430px){.grid{grid-template-columns:1fr}.product-bottom{flex-direction:row;align-items:center}.add{width:auto}.hero-card .big{font-size:38px}}
+:root{
+--bg:#061638;
+--panel:#0b2454;
+--panel2:#102f6b;
+--gold:#ffdf00;
+--gold2:#ffe95c;
+--text:#f7f9ff;
+--muted:#c0cce4;
+--line:#28477d;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+background:radial-gradient(circle at 85% -10%,#1a3265 0,transparent 38%),var(--bg);
+color:var(--text);
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin:auto}
+
+header{
+position:sticky;top:0;z-index:10;
+background:#071b49f2;
+backdrop-filter:blur(14px);
+border-bottom:2px solid var(--gold)
+}
+.nav{
+display:flex;align-items:center;justify-content:space-between;
+gap:14px;padding:13px 0
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900}
+.logo{
+display:grid;place-items:center;width:40px;height:40px;
+border-radius:12px;
+background:linear-gradient(135deg,#ffef72,#ffdf00);
+color:#071b49;font-weight:1000;font-size:19px
+}
+.brand small{
+display:block;color:var(--muted);font-size:10px;
+letter-spacing:2px;margin-top:2px
+}
+.nav-actions{
+display:flex;gap:8px;align-items:center;
+flex-wrap:wrap;justify-content:flex-end
+}
+.btn{
+border:1px solid var(--line);border-radius:12px;
+background:var(--panel2);color:var(--text);
+padding:10px 13px;font-weight:750
+}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{
+background:linear-gradient(135deg,#ffef72,#ffdf00);
+color:#08122b;border:0
+}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.cart-count{
+display:inline-grid;place-items:center;
+background:var(--gold);color:#151515;
+border-radius:50%;min-width:22px;height:22px;
+font-size:12px;margin-left:5px
+}
+
+.hero{
+padding:44px 0 28px;
+display:grid;grid-template-columns:1.2fr .8fr;
+gap:25px;align-items:center
+}
+.eyebrow{
+display:inline-block;color:var(--gold2);
+border:1px solid #6c5727;background:#2b2414;
+border-radius:99px;padding:7px 11px;
+font-size:12px;font-weight:800
+}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.03;margin:17px 0}
+h1 span{color:var(--gold)}
+.hero p{color:var(--muted);line-height:1.7}
+.hero-card{
+border:1px solid var(--gold);border-radius:22px;
+padding:25px;background:linear-gradient(145deg,#123779,#081a42)
+}
+.hero-card .big{font-size:46px}
+.hero-card h3{margin:8px 0;color:var(--gold2)}
+
+.notice{
+margin:0 0 20px;border:1px solid var(--gold);
+background:#102c62;color:#ffea65;
+padding:12px 14px;border-radius:12px;
+font-size:13px;line-height:1.6
+}
+.toolbar{
+display:flex;gap:10px;align-items:center;
+flex-wrap:wrap;margin:18px 0
+}
+.search,.field{
+width:100%;border:1px solid var(--line);
+background:var(--panel);color:var(--text);
+border-radius:12px;padding:12px 14px;outline:none
+}
+.search{flex:1;min-width:190px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{
+padding:9px 12px;border-radius:999px;
+border:1px solid var(--line);
+background:var(--panel);color:var(--muted);
+font-weight:700
+}
+.filter.active{
+background:#173c80;border-color:var(--gold);
+color:var(--gold2)
+}
+
+.section-head{
+display:flex;align-items:end;justify-content:space-between;
+gap:12px;margin:28px 0 15px
+}
+.section-head h2{margin:0;font-size:24px}
+.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+
+.grid{
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:15px;margin-bottom:35px
+}
+.product,.listing-card{
+background:linear-gradient(180deg,var(--panel2),var(--panel));
+border:1px solid var(--line);border-radius:18px;
+padding:17px;display:flex;flex-direction:column;
+min-height:240px
+}
+.product-top{
+display:flex;justify-content:space-between;
+align-items:center;gap:8px
+}
+.product-icon{
+display:grid;place-items:center;width:54px;height:54px;
+border-radius:15px;background:#163a7b;font-size:27px
+}
+.tag{
+font-size:10px;letter-spacing:.7px;font-weight:900;
+color:var(--gold2);background:#16366e;
+border:1px solid #5578b8;border-radius:99px;
+padding:5px 8px
+}
+.product h3{margin:16px 0 5px;font-size:17px}
+.desc{
+color:var(--muted);font-size:13px;
+line-height:1.5;margin:0 0 15px;flex:1
+}
+.product-bottom{
+display:flex;align-items:center;
+justify-content:space-between;gap:8px
+}
+.price{font-size:18px;font-weight:900;color:var(--gold2)}
+.price small{
+display:block;font-size:10px;font-weight:600;
+color:var(--muted);margin-top:3px
+}
+.add{
+border:0;border-radius:10px;background:var(--gold);
+color:#17130a;font-weight:900;padding:10px 12px
+}
+.add:disabled{opacity:.5;cursor:not-allowed}
+.empty{
+grid-column:1/-1;padding:30px;text-align:center;
+color:var(--muted);border:1px dashed var(--line);
+border-radius:16px
+}
+.listing-form{
+display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px;margin:14px 0 20px
+}
+.wide{grid-column:1/-1}
+.listing-card{min-height:0;gap:9px}
+.listing-card h3{margin:0}
+.muted{font-size:12px;color:var(--muted)}
+
+footer{
+border-top:1px solid var(--line);
+padding:25px 0 35px;color:var(--muted);
+font-size:12px;line-height:1.7
+}
+footer strong{color:var(--gold2)}
+
+.overlay{
+position:fixed;inset:0;background:#0009;
+z-index:20;display:none
+}
+.overlay.open{display:block}
+.drawer{
+position:fixed;z-index:21;right:0;top:0;
+height:100%;width:min(430px,100%);
+background:#081b43;border-left:2px solid var(--gold);
+padding:20px;transform:translateX(105%);
+transition:transform .25s;
+display:flex;flex-direction:column
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+display:flex;justify-content:space-between;
+align-items:center;border-bottom:1px solid var(--line);
+padding-bottom:14px;gap:10px
+}
+.drawer-head h2{margin:0}
+.icon-btn{
+border:1px solid var(--line);background:var(--panel2);
+color:var(--text);border-radius:10px;padding:8px 11px
+}
+.cart-items{overflow:auto;flex:1;padding:12px 0}
+.cart-item{
+display:grid;grid-template-columns:1fr auto;
+gap:8px;border-bottom:1px solid var(--line);padding:13px 0
+}
+.cart-item h4{margin:0 0 5px;font-size:14px}
+.qty{display:flex;gap:7px;align-items:center;margin-top:8px}
+.qty button{
+width:28px;height:28px;border:1px solid var(--line);
+background:var(--panel2);color:var(--text);border-radius:7px
+}
+.cart-total{border-top:1px solid var(--line);padding-top:14px}
+.total-line{
+display:flex;justify-content:space-between;
+align-items:center;margin:8px 0
+}
+.total-line strong{font-size:21px;color:var(--gold2)}
+.cart-note{font-size:12px;color:var(--muted);line-height:1.5}
+.checkout{width:100%;margin-top:10px}
+
+.toast{
+position:fixed;z-index:50;bottom:20px;left:50%;
+transform:translate(-50%,20px);opacity:0;
+pointer-events:none;background:#102f6b;
+border:1px solid var(--gold);padding:12px 16px;
+border-radius:12px;transition:.2s;
+max-width:90%;font-size:13px
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.modal-backdrop{
+position:fixed;inset:0;z-index:40;background:#000b;
+display:none;align-items:center;justify-content:center;padding:18px
+}
+.modal-backdrop.open{display:flex}
+.modal-card{
+width:min(520px,100%);max-height:90vh;overflow:auto;
+background:#0b2454;border:1px solid var(--gold);
+border-radius:20px;padding:20px
+}
+.modal-body{padding-top:14px}
+.modal-body label{
+display:block;margin:12px 0 7px;
+font-size:13px;color:var(--muted)
+}
+.modal-body .field{margin-bottom:5px}
+.history-card{
+padding:14px;margin:12px 0;
+border:1px solid var(--gold);
+border-radius:14px;background:#102f6b
+}
+
+#intro{
+position:fixed;inset:0;z-index:9999;
+display:flex;align-items:center;justify-content:center;
+padding:24px;
+background:radial-gradient(ellipse at 50% 25%,#173b7d,#071638 55%,#020817);
+transition:opacity .4s
+}
+.intro-card{
+width:min(520px,100%);text-align:center;padding:34px 22px;
+border:1px solid #ffdf0088;border-radius:26px;
+background:linear-gradient(145deg,#102f6bee,#030d23f5)
+}
+.intro-mark{
+width:86px;height:86px;border-radius:24px;
+margin:0 auto 18px;display:grid;place-items:center;
+background:linear-gradient(135deg,#ffdf00,#ffb800);
+color:#071638;font-size:31px;font-weight:1000
+}
+.intro-card h2{margin:0;color:var(--gold);font-size:clamp(27px,7vw,42px)}
+.intro-card p{color:#d9e5ff;line-height:1.6}
+.intro-card .btn{width:min(290px,100%);padding:15px}
+
+@media(max-width:760px){
+.hero{grid-template-columns:1fr;padding-top:30px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.product{padding:13px}
+.product-bottom{align-items:flex-start;flex-direction:column}
+.add{width:100%}
+.nav{align-items:flex-start;flex-direction:column;gap:10px}
+.nav-actions{
+width:100%;display:flex;flex-wrap:nowrap;
+gap:7px;justify-content:space-between
+}
+.nav-actions .btn{
+flex:1;min-width:0;padding:9px 5px;
+font-size:13px;border-radius:11px;
+white-space:nowrap;text-align:center
+}
+.cart-count{min-width:19px;height:19px;font-size:11px;margin-left:2px}
+.listing-form{grid-template-columns:1fr}
+.wide{grid-column:auto}
+}
+@media(max-width:430px){
+.grid{grid-template-columns:1fr}
+.product-bottom{flex-direction:row;align-items:center}
+.add{width:auto}
+.hero-card .big{font-size:38px}
+}
 </style>
 </head>
+
 <body>
+
 <div id="intro" role="dialog" aria-modal="true">
- <div class="intro-card"><div class="intro-mark">WE</div><h2>WeshEpin<br>.com.tr</h2><p>Oyunun, pazarın, gücün!<br>Sarı-lacivert oyun dünyasına hoş geldin.</p><button class="btn gold" id="enterBtn">🎵 Siteye Gir</button><p class="muted">Müzik isteğe bağlıdır.</p></div>
+ <div class="intro-card">
+  <div class="intro-mark">WE</div>
+  <h2>WeshEpin<br>.com.tr</h2>
+  <p>Oyunun, pazarın, gücün!<br>Sarı-lacivert oyun dünyasına hoş geldin.</p>
+  <button class="btn gold" id="enterBtn">🎵 Siteye Gir</button>
+  <p class="muted">Müzik isteğe bağlıdır.</p>
+ </div>
 </div>
-<header><div class="wrap nav">
-<a class="brand" href="#" id="homeLink"><span class="logo">W</span><span>WeshEpin.com.tr<small>DİJİTAL OYUN MAĞAZASI</small></span></a>
-<div class="nav-actions"><button class="btn" id="accountOpen">Üyelik</button><button class="btn" id="ordersOpen">Sipariş takibi</button><button class="btn" id="cartOpen">🛒 Sepet <span class="cart-count" id="cartCount">0</span></button></div>
-</div></header>
+
+<header>
+<div class="wrap nav">
+ <a class="brand" href="#" id="homeLink">
+  <span class="logo">W</span>
+  <span>WeshEpin.com.tr<small>DİJİTAL OYUN MAĞAZASI</small></span>
+ </a>
+ <div class="nav-actions">
+  <button class="btn" id="accountOpen">Üyelik</button>
+  <button class="btn" id="ordersOpen">Sipariş takibi</button>
+  <button class="btn" id="cartOpen">🛒 Sepet <span class="cart-count" id="cartCount">0</span></button>
+ </div>
+</div>
+</header>
+
 <main class="wrap">
-<section class="hero" id="top"><div><span class="eyebrow">⚡ OYUN DÜNYANA GÜÇ KAT</span><h1>Dijital ürünler.<br><span>Yeni seviye.</span></h1><p>WeshEpin dijital oyun mağazasına hoş geldin. Ürünleri incele, ara ve demo sepetine ekle.</p><button class="btn gold" id="explore">Ürünleri keşfet ↓</button></div><div class="hero-card"><div class="big">🎮 💛💙</div><h3>Oyun keyfi tek yerde</h3><p>Modern mağaza arayüzü · Mobil uyumlu · Etkileşimli demo sepeti</p><span class="tag">SARI-LACİVERT TASARIM</span></div></section>
-<div class="notice"><strong>Demo bilgilendirmesi:</strong> Ürünler ve fiyatlar örnektir. Bu sürüm ödeme almaz, gerçek ürün teslim etmez ve gerçek sipariş oluşturmaz.</div>
-<div class="toolbar"><input class="search" id="search" type="search" placeholder="Ürün ara: UC, VP, oyun pini..." aria-label="Ürün ara"><div class="filters" id="filters"><button class="filter active" data-category="Tümü">Tümü</button><button class="filter" data-category="PUBG Mobile">PUBG Mobile</button><button class="filter" data-category="Valorant">Valorant</button><button class="filter" data-category="Oyun Kartları">Oyun Kartları</button></div></div>
-<div class="section-head"><div><h2>Kullanıcı İlanları</h2><p>Bu cihazda saklanan örnek ilanlar</p></div><span class="tag" id="listingCount">0 İLAN</span></div>
-<form class="listing-form" id="listingForm"><input class="field" id="listingName" required maxlength="70" placeholder="İlan başlığı"><input class="field" id="listingPrice" required type="number" min="1" max="1000000" step="0.01" placeholder="Fiyat (₺)"><input class="field wide" id="listingDescription" required maxlength="240" placeholder="Açıklama"><input class="field" id="sellerName" required maxlength="35" placeholder="Satıcı görünen adı"><button class="btn gold" type="submit">+ Demo ilanı yayınla</button></form>
+
+<section class="hero" id="top">
+ <div>
+  <span class="eyebrow">⚡ OYUN DÜNYANA GÜÇ KAT</span>
+  <h1>Dijital ürünler.<br><span>Yeni seviye.</span></h1>
+  <p>WeshEpin dijital oyun mağazasına hoş geldin. Ürünleri incele, ara ve demo sepetine ekle.</p>
+  <button class="btn gold" id="explore">Ürünleri keşfet ↓</button>
+ </div>
+ <div class="hero-card">
+  <div class="big">🎮 💛💙</div>
+  <h3>Oyun keyfi tek yerde</h3>
+  <p>Modern mağaza arayüzü · Mobil uyumlu · Etkileşimli demo sepeti</p>
+  <span class="tag">SARI-LACİVERT TASARIM</span>
+ </div>
+</section>
+
+<div class="notice">
+ <strong>Önemli bilgilendirme:</strong>
+ Bu sürüm katalog ve demo sepetidir. Ürünlerin fiyatları ve stokları doğrulanmamıştır.
+ Ödeme alınmaz, gerçek kod teslim edilmez ve gerçek sipariş oluşturulmaz.
+</div>
+
+<div class="toolbar">
+ <input class="search" id="search" type="search"
+ placeholder="Ürün ara: UC, VP, Steam, Apple..." aria-label="Ürün ara">
+ <div class="filters" id="filters">
+  <button class="filter active" data-category="Tümü">Tümü</button>
+  <button class="filter" data-category="PUBG Mobile">PUBG UC</button>
+  <button class="filter" data-category="Valorant">Valorant VP</button>
+  <button class="filter" data-category="Oyun Kartları">Oyun Kartları</button>
+  <button class="filter" data-category="Google Play">Google Play</button>
+  <button class="filter" data-category="Apple">Apple</button>
+ </div>
+</div>
+
+<div class="section-head">
+ <div>
+  <h2>Kullanıcı İlanları</h2>
+  <p>Bu cihazda saklanan örnek ilanlar</p>
+ </div>
+ <span class="tag" id="listingCount">0 İLAN</span>
+</div>
+
+<form class="listing-form" id="listingForm">
+ <input class="field" id="listingName" required maxlength="70" placeholder="İlan başlığı">
+ <input class="field" id="listingPrice" required type="number" min="1" max="1000000" step="0.01" placeholder="Fiyat (₺)">
+ <input class="field wide" id="listingDescription" required maxlength="240" placeholder="Açıklama">
+ <input class="field" id="sellerName" required maxlength="35" placeholder="Satıcı görünen adı">
+ <button class="btn gold" type="submit">+ Demo ilanı yayınla</button>
+</form>
+
 <section class="grid" id="listingGrid"></section>
-<div class="section-head" id="productsTitle"><div><h2>Öne çıkan ürünler</h2><p>Demo ürün kataloğu · Örnek fiyatlar</p></div><span class="tag" id="productCount">6 ÜRÜN</span></div><section class="grid" id="productGrid"></section>
+
+<div class="section-head" id="productsTitle">
+ <div>
+  <h2>Tüm Ürünler</h2>
+  <p>Geniş dijital oyun kataloğu · Fiyatlar henüz doğrulanmadı</p>
+ </div>
+ <span class="tag" id="productCount">0 ÜRÜN</span>
+</div>
+
+<section class="grid" id="productGrid"></section>
+
 </main>
-<footer><div class="wrap"><strong>WeshEpin.com.tr</strong><br>Bu sürüm ön yüz demosudur. Gerçek satış için güvenli ödeme, yetkili tedarik, sunucu tarafında sipariş doğrulaması ve yasal gereklilikler ayrıca kurulmalıdır.</div></footer>
-<div class="overlay" id="overlay"></div><aside class="drawer" id="drawer"><div class="drawer-head"><h2>Sepetim</h2><div><button class="icon-btn" id="clearCart">Temizle</button> <button class="icon-btn" id="cartClose">✕</button></div></div><div class="cart-items" id="cartItems"></div><div class="cart-total"><div class="total-line"><span>Ara toplam (örnek)</span><strong id="cartTotal">₺0,00</strong></div><p class="cart-note">Demo sepetidir. Ödeme alınmaz.</p><button class="btn gold checkout" id="checkout">Demo sipariş oluştur</button></div></aside>
+
+<footer>
+<div class="wrap">
+ <strong>WeshEpin.com.tr</strong><br>
+ Dijital oyun mağazası.<br>
+ Bu sürüm ön yüz demosudur. Gerçek satış için yetkili tedarikçi,
+ güvenli ödeme altyapısı, sunucu tarafında sipariş doğrulaması
+ ve gerekli yasal düzenlemeler kurulmalıdır.
+</div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer">
+ <div class="drawer-head">
+  <h2>Sepetim</h2>
+  <div>
+   <button class="icon-btn" id="clearCart">Temizle</button>
+   <button class="icon-btn" id="cartClose">✕</button>
+  </div>
+ </div>
+ <div class="cart-items" id="cartItems"></div>
+ <div class="cart-total">
+  <div class="total-line">
+   <span>Toplam</span>
+   <strong id="cartTotal">Fiyat bekleniyor</strong>
+  </div>
+  <p class="cart-note">Ürün fiyatları henüz doğrulanmadı. Bu sepet demo amaçlıdır.</p>
+  <button class="btn gold checkout" id="checkout">Demo sipariş oluştur</button>
+ </div>
+</aside>
+
 <div class="toast" id="toast" role="status"></div>
-<div class="modal-backdrop" id="accountModal"><section class="modal-card"><div class="drawer-head"><h2>WeshEpin üyeliği</h2><button class="icon-btn" data-close="accountModal">✕</button></div><div class="modal-body"><p class="cart-note">Bu önizlemede gerçek üyelik sistemi bağlı değildir. Demo hesap bilgisi yalnızca bu oturumda kullanılır.</p><div id="signedOut"><label>E-posta</label><input class="field" id="email" type="email" placeholder="ornek@eposta.com"><label>Şifre</label><input class="field" id="password" type="password" placeholder="En az 8 karakter"><button class="btn gold checkout" id="demoLogin">Demo giriş yap</button><button class="btn checkout" id="demoSignup">Demo hesap oluştur</button></div><div id="signedIn" hidden><p id="userLabel"></p><button class="btn gold checkout" id="logout">Çıkış yap</button></div><p class="cart-note" id="authStatus" aria-live="polite"></p></div></section></div>
-<div class="modal-backdrop" id="ordersModal"><section class="modal-card"><div class="drawer-head"><h2>Sipariş Geçmişim</h2><button class="icon-btn" data-close="ordersModal">✕</button></div><div class="modal-body"><p class="notice">Bunlar yalnızca demo siparişleridir; ödeme ve teslimat yapılmaz.</p><button class="btn gold checkout" id="refreshOrders">Sipariş geçmişini yenile</button><div id="orderHistory"></div></div></section></div>
+
+<div class="modal-backdrop" id="accountModal">
+<section class="modal-card">
+ <div class="drawer-head">
+  <h2>WeshEpin üyeliği</h2>
+  <button class="icon-btn" data-close="accountModal">✕</button>
+ </div>
+ <div class="modal-body">
+  <p class="cart-note">Bu önizlemede gerçek üyelik sistemi bağlı değildir. Demo oturumudur.</p>
+  <div id="signedOut">
+   <label>E-posta</label>
+   <input class="field" id="email" type="email" placeholder="ornek@eposta.com">
+   <label>Şifre</label>
+   <input class="field" id="password" type="password" placeholder="En az 8 karakter">
+   <button class="btn gold checkout" id="demoLogin">Demo giriş yap</button>
+   <button class="btn checkout" id="demoSignup">Demo hesap oluştur</button>
+  </div>
+  <div id="signedIn" hidden>
+   <p id="userLabel"></p>
+   <button class="btn gold checkout" id="logout">Çıkış yap</button>
+  </div>
+  <p class="cart-note" id="authStatus" aria-live="polite"></p>
+ </div>
+</section>
+</div>
+
+<div class="modal-backdrop" id="ordersModal">
+<section class="modal-card">
+ <div class="drawer-head">
+  <h2>Sipariş Geçmişim</h2>
+  <button class="icon-btn" data-close="ordersModal">✕</button>
+ </div>
+ <div class="modal-body">
+  <p class="notice">Bunlar yalnızca demo siparişleridir. Ödeme ve teslimat yapılmaz.</p>
+  <button class="btn gold checkout" id="refreshOrders">Sipariş geçmişini yenile</button>
+  <div id="orderHistory"></div>
+ </div>
+</section>
+</div>
+
 <script>
 "use strict";
+
 const $=id=>document.getElementById(id);
-const money=n=>new Intl.NumberFormat("tr-TR",{style:"currency",currency:"TRY"}).format(n);
+
+const money=n=>new Intl.NumberFormat("tr-TR",{
+ style:"currency",currency:"TRY"
+}).format(n);
+
+function makeProducts(name,category,values,icon,unit){
+ return values.map(value=>({
+  id:nextProductId++,
+  name:name,
+  detail:value.toLocaleString("tr-TR")+" "+unit,
+  price:null,
+  category:category,
+  icon:icon
+ }));
+}
+
+let nextProductId=1;
+
 const products=[
-{id:1,name:"PUBG Mobile UC",detail:"60 UC · örnek paket",price:49.90,category:"PUBG Mobile",icon:"🎯"},
-{id:2,name:"PUBG Mobile UC",detail:"325 UC · örnek paket",price:219.90,category:"PUBG Mobile",icon:"🪙"},
-{id:3,name:"PUBG Mobile UC",detail:"660 UC · örnek paket",price:429.90,category:"PUBG Mobile",icon:"💠"},
-{id:4,name:"VALORANT VP",detail:"475 VP · örnek paket",price:59.90,category:"Valorant",icon:"🎯"},
-{id:5,name:"VALORANT VP",detail:"1000 VP · örnek paket",price:119.90,category:"Valorant",icon:"⚔️"},
-{id:6,name:"Dijital Oyun Kartı",detail:"Örnek dijital kart ürünü",price:100,category:"Oyun Kartları",icon:"🎁"}
+
+ // PUBG MOBILE UC
+ ...makeProducts("PUBG Mobile UC","PUBG Mobile",
+ [60,120,180,325,385,660,720,985,1320,1800,
+  2125,2460,3850,5650,8100,11950,16200,
+  24300,32400,40500,81000,121500,162000,
+  202500,243000,283500,324000,364500,405000],
+ "🎯","UC"),
+
+ // VALORANT VP
+ ...makeProducts("VALORANT VP","Valorant",
+ [235,475,1000,2050,3650,5350,7100,8900],
+ "⚔️","VP"),
+
+ // STEAM
+ ...makeProducts("Steam Hediye Kartı","Oyun Kartları",
+ [50,100,250,500,1000,2000,5000],
+ "🎮","TL"),
+
+ // PLAYSTATION
+ ...makeProducts("PlayStation Store Kartı","Oyun Kartları",
+ [50,100,250,500,1000,2000,5000],
+ "🎮","TL"),
+
+ // XBOX
+ ...makeProducts("Xbox Hediye Kartı","Oyun Kartları",
+ [50,100,250,500,1000,2000,5000],
+ "🟩","TL"),
+
+ // NINTENDO
+ ...makeProducts("Nintendo eShop Kartı","Oyun Kartları",
+ [50,100,250,500,1000,2000,5000],
+ "🎮","TL"),
+
+ // GOOGLE PLAY
+ ...makeProducts("Google Play Kodu","Google Play",
+ [25,50,100,250,500,1000,2000,5000],
+ "▶️","TL"),
+
+ // APPLE
+ ...makeProducts("Apple Gift Card","Apple",
+ [25,50,100,250,500,1000,2000,5000],
+ "🍎","TL")
+
 ];
-let cart=[];let activeCategory="Tümü";let currentUser=null;
+
+let cart=[];
+let activeCategory="Tümü";
+let currentUser=null;
+
 let listings=readStore("weshepin_listings",[]);
 let orders=readStore("weshepin_demo_orders",[]);
-function readStore(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v??fallback}catch(e){return fallback}}
-function writeStore(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){toast("Tarayıcı depolaması kullanılamıyor.")}}
-function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2400)}
-function renderProducts(){const q=$("search").value.trim().toLocaleLowerCase("tr-TR");const list=products.filter(p=>(activeCategory==="Tümü"||p.category===activeCategory)&&(`${p.name} ${p.detail} ${p.category}`).toLocaleLowerCase("tr-TR").includes(q));$("productCount").textContent=list.length+" ÜRÜN";const grid=$("productGrid");grid.innerHTML="";if(!list.length){grid.innerHTML='<div class="empty">Bu aramayla eşleşen ürün bulunamadı.</div>';return}list.forEach(p=>{const card=document.createElement("article");card.className="product";card.innerHTML=`<div class="product-top"><div class="product-icon">${p.icon}</div><span class="tag">ÖRNEK</span></div><h3>${p.name}</h3><p class="desc">${p.detail}</p><div class="product-bottom"><div class="price">${money(p.price)}<small>Örnek fiyat</small></div><button class="add" data-add="${p.id}">Sepete ekle</button></div>`;grid.appendChild(card)})}
-function renderListings(){const grid=$("listingGrid");grid.innerHTML="";$("listingCount").textContent=listings.length+" İLAN";if(!listings.length){grid.innerHTML='<div class="empty">Henüz demo ilanı yok. Yukarıdaki formdan örnek ilan ekleyebilirsin.</div>';return}listings.forEach(item=>{const card=document.createElement("article");card.className="listing-card";const h=document.createElement("h3");h.textContent=item.name;const price=document.createElement("strong");price.style.color="var(--gold2)";price.textContent=money(item.price);const desc=document.createElement("p");desc.className="desc";desc.textContent=item.description;const seller=document.createElement("p");seller.className="muted";seller.textContent="Satıcı: "+item.seller+" · Demo ilan";card.append(h,price,desc,seller);grid.appendChild(card)})}
-function renderCart(){const root=$("cartItems");root.innerHTML="";let count=0,total=0;if(!cart.length)root.innerHTML='<div class="empty">Sepetin şu an boş.</div>';cart.forEach(item=>{count+=item.qty;total+=item.price*item.qty;const row=document.createElement("div");row.className="cart-item";const info=document.createElement("div");const h=document.createElement("h4");h.textContent=item.name;const small=document.createElement("small");small.textContent=money(item.price)+" · örnek fiyat";info.append(h,small);const controls=document.createElement("div");controls.className="qty";const minus=document.createElement("button");minus.textContent="−";minus.setAttribute("aria-label","Bir adet azalt");minus.onclick=()=>changeQty(item.id,-1);const qty=document.createElement("span");qty.textContent=item.qty;const plus=document.createElement("button");plus.textContent="+";plus.setAttribute("aria-label","Bir adet artır");plus.onclick=()=>changeQty(item.id,1);controls.append(minus,qty,plus);row.append(info,controls);root.appendChild(row)});$("cartCount").textContent=count;$("cartTotal").textContent=money(total)}
-function changeQty(id,delta){const item=cart.find(x=>x.id===id);if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);renderCart()}
-function openCart(){ $("overlay").classList.add("open");$("drawer").classList.add("open")}
-function closeCart(){ $("overlay").classList.remove("open");$("drawer").classList.remove("open")}
-function openModal(id){$(id).classList.add("open")}
-function closeModal(id){$(id).classList.remove("open")}
-function renderOrders(){const root=$("orderHistory");root.innerHTML="";if(!orders.length){root.textContent="Henüz demo siparişin yok.";return}orders.slice().reverse().forEach(order=>{const card=document.createElement("div");card.className="history-card";const title=document.createElement("h3");title.textContent=order.id;const date=document.createElement("p");date.textContent="Tarih: "+order.date;const state=document.createElement("p");state.textContent="Durum: "+order.status;const info=document.createElement("p");info.textContent="Ürünler: "+order.items.map(i=>i.name+" × "+i.qty).join(", ");const note=document.createElement("p");note.className="muted";note.textContent="DEMO SİPARİŞ · Ödeme ve teslimat yapılmadı";card.append(title,date,state,info,note);root.appendChild(card)})}
-function updateAuth(){const signed=!!currentUser;$("signedOut").hidden=signed;$("signedIn").hidden=!signed;if(signed)$("userLabel").textContent="Demo oturumu: "+currentUser}
-$("enterBtn").addEventListener("click",()=>{$("intro").style.display="none"});
-$("explore").addEventListener("click",()=>$("productsTitle").scrollIntoView({behavior:"smooth"}));
-$("homeLink").addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:"smooth"})});
-$("search").addEventListener("input",renderProducts);
-$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;activeCategory=b.dataset.category;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderProducts()});
-$("productGrid").addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;const p=products.find(x=>x.id===Number(b.dataset.add));const existing=cart.find(x=>x.id===p.id);if(existing)existing.qty++;else cart.push({...p,qty:1});renderCart();toast("Ürün demo sepetine eklendi.")});
-$("cartOpen").addEventListener("click",openCart);$("cartClose").addEventListener("click",closeCart);$("overlay").addEventListener("click",closeCart);
-$("clearCart").addEventListener("click",()=>{cart=[];renderCart();toast("Sepet temizlendi.")});
-$("checkout").addEventListener("click",()=>{if(!cart.length){toast("Önce sepete ürün ekle.");return}const total=cart.reduce((s,x)=>s+x.price*x.qty,0);orders.push({id:"WE-DEMO-"+Date.now(),date:new Date().toLocaleString("tr-TR"),status:"Demo oluşturuldu",total,items:cart.map(x=>({name:x.name,qty:x.qty,price:x.price}))});writeStore("weshepin_demo_orders",orders);cart=[];renderCart();closeCart();toast("Demo sipariş oluşturuldu. Ödeme alınmadı.")});
-$("accountOpen").addEventListener("click",()=>openModal("accountModal"));$("ordersOpen").addEventListener("click",()=>{renderOrders();openModal("ordersModal")});
-document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
-document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-$("demoLogin").addEventListener("click",()=>{const email=$("email").value.trim(),pass=$("password").value;if(!email||pass.length<8){$("authStatus").textContent="Geçerli e-posta ve en az 8 karakterli şifre gir.";return}currentUser=email;updateAuth();$("authStatus").textContent="Demo giriş başarılı. Gerçek hesap oluşturulmadı.";});
-$("demoSignup").addEventListener("click",()=>{const email=$("email").value.trim(),pass=$("password").value;if(!email||pass.length<8){$("authStatus").textContent="Geçerli e-posta ve en az 8 karakterli şifre gir.";return}currentUser=email;updateAuth();$("authStatus").textContent="Demo oturum açıldı. Bilgilerin sunucuya kaydedilmedi.";});
-$("logout").addEventListener("click",()=>{currentUser=null;updateAuth();$("authStatus").textContent="Demo oturum kapatıldı."});
-$("refreshOrders").addEventListener("click",()=>{orders=readStore("weshepin_demo_orders",[]);renderOrders();toast("Sipariş geçmişi yenilendi.")});
-$("listingForm").addEventListener("submit",e=>{e.preventDefault();const item={id:Date.now(),name:$("listingName").value.trim(),price:Number($("listingPrice").value),description:$("listingDescription").value.trim(),seller:$("sellerName").value.trim()};if(!item.name||!item.description||!item.seller||!Number.isFinite(item.price)||item.price<=0){toast("Lütfen tüm alanları doğru doldur.");return}listings.unshift(item);writeStore("weshepin_listings",listings);e.target.reset();renderListings();toast("Demo ilan eklendi.")});
-renderProducts();renderCart();renderListings();updateAuth();
-</script>
-</body>
-</html>
+
+function readStore(key,fallback){
+ try{
+  const v=JSON.parse(localStorage.getItem(key));
+  return v??fallback;
+ }catch(e){
+  return fallback;
+ }
+}
+
+function writeStore(key,value){
+ try{
+  localStorage.setItem(key,JSON.stringify(value));
+ }catch(e){
+  toast("Tarayıcı depolaması kullanılamıyor.");
+ }
+}
+
+function toast(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>el.classList.remove("show"),2400);
+}
+
+function renderProducts(){
+
+ const q=$("search").value.trim().toLocaleLowerCase("tr-TR");
+
+ const list=products.filter(p=>
+  (activeCategory==="Tümü"||p.category===activeCategory)&&
+  (`${p.name} ${p.detail} ${p.category}`)
+  .toLocaleLowerCase("tr-TR").includes(q)
+ );
+
+ $("productCount").textContent=list.length+" ÜRÜN";
+
+ const grid=$("productGrid");
+ grid.innerHTML="";
+
+ if(!list.length){
+  grid.innerHTML='<div class="empty">Bu aramayla eşleşen ürün bulunamadı.</div>';
+  return;
+ }
+
+ list.forEach(p=>{
+
+  const card=document.createElement("article");
+  card.className="product";
+
+  const top=document.createElement("div");
+  top.className="product-top";
+
+  const icon=document.createElement("div");
+  icon.className="product-icon";
+  icon.textContent=p.icon;
+
+  const tag=document.createElement("span");
+  tag.className="tag";
+  tag.textContent="FİYAT BEKLİYOR";
+
+  top.append(icon,tag);
+
+  const title=document.createElement("h3");
+  title.textContent=p.name;
+
+  const desc=document.createElement("p");
+  desc.className="desc";
+  desc.textContent=p.detail+" · Örnek katalog seçeneği";
+
+  const bottom=document.createElement("div");
+  bottom.className="product-bottom";
+
+  const price=document.createElement("div");
+  price.className="price";
+  price.textContent="Fiyat bekleniyor";
+
+  const small=document.createElement("small");
+  small.textContent="Tedarikçi fiyatı eklenecek";
+  price.appendChild(small);
+
+  const button=document.createElement("button");
+  button.className="add";
+  button.textContent="Demo sepete ekle";
+  button.dataset.add=p.id;
+
+  bottom.append(price,button);
+  card.append(top,title,desc,bottom);
+  grid.appendChild(card);
+ });
+}
+
+function renderListings(){
+
+ const grid=$("listingGrid");
+ grid.innerHTML="";
+
+ $("listingCount").textContent=listings.length+" İLAN";
+
+ if(!listings.length){
+  grid.innerHTML='<div class="empty">Henüz demo ilanı yok. Yukarıdaki formdan örnek ilan ekleyebilirsin.</div>';
+  return;
+ }
+
+ listings.forEach(item=>{
+
+  const card=document.createElement("article");
+  card.className="listing-card";
+
+  const h=document.createElement("h3");
+  h.textContent=item.name;
+
+  const price=document.createElement("strong");
+  price.style.color="var(--gold2)";
+  price.textContent=money(item.price);
+
+  const desc=document.createElement("p");
+  desc.className="desc";
+  desc.textContent=item.description;
+
+  const seller=document.createElement("p");
+  seller.className="muted";
+  seller.textContent="Satıcı: "+item.seller+" · Demo ilan";
+
+  card.append(h,price,desc,seller);
+  grid.appendChild(card);
+ });
+}
+
+function renderCart(){
+
+ const root=$("cartItems");
+ root.innerHTML="";
+
+ let count=0;
+
+ if(!cart.length){
+  root.innerHTML='<div class="empty">Sepetin şu an boş.</div>';
+ }
+
+ cart.forEach(item=>{
+
+  count+=item.qty;
+
+  const row=document.createElement("div");
+  row.className="cart-item";
+
+  const info=document.createElement("div");
+
+  const h=document.createElement("h4");
+  h.textContent=item.name+" - "+item.detail;
+
+  const small=document.createElement("small");
+  small.textContent="Fiyat henüz doğrulanmadı";
+
+  info.append(h,small);
+
+  const controls=document.createElement("div");
+  controls.className="qty";
+
+  const minus=document.createElem
