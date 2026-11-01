@@ -118,7 +118,79 @@ $("accountOpen").onclick=()=>{openModal("accountModal");refreshAuthState()};$("o
 document.querySelectorAll("[data-close-modal]").forEach(b=>b.onclick=()=>closeModal(b.dataset.closeModal));
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
 
-const URL_STORAGE="gamepinVaultSupabaseProjectUrl",KEY_STORAGE="gamepinVaultSupabasePublishableKey";$("checkout").onclick=()=>{   if(!cart.length){     toast("Önce sepete bir ürün ekle.");     return;   }   const orders=JSON.parse(localStorage.getItem("weshepin_demo_orders")||"[]");   const order={     id:"DEMO-"+Date.now(),     date:new Date().toLocaleString("tr-TR"),     items:cart.map(item=>{       const p=products.find(x=>String(x.id)===String(item.id));       return p?{name:p.name,detail:p.detail,price:p.price,qty:item.qty}:null;     }).filter(Boolean),     status:"Demo sipariş — ödeme alınmadı"   };   orders.unshift(order);   localStorage.setItem("weshepin_demo_orders",JSON.stringify(orders));   toast("Demo sipariş kaydedildi: "+order.id);   cart=[];   saveCart();   renderCart(); };
+const URL_STORAGE="gamepinVaultSupabaseProjectUrl",KEY_STORAGE="gamepinVaultSupabasePublishableKey";  $("checkout").onclick=()=>{
+  if(!cart.length){
+    toast("Önce sepete bir ürün ekle.");
+    return;
+  }
+
+  const orders=JSON.parse(
+    localStorage.getItem("weshepin_demo_orders")||"[]"
+  );
+
+  const order={
+    id:"DEMO-"+Date.now(),
+    date:new Date().toLocaleString("tr-TR"),
+    items:cart.map(item=>{
+      const p=products.find(x=>String(x.id)===String(item.id));
+      return p?{
+        name:p.name,
+        detail:p.detail,
+        price:p.price,
+        qty:item.qty
+      }:null;
+    }).filter(Boolean),
+    status:"Sipariş alındı",
+    demo:true
+  };
+
+  orders.unshift(order);
+  localStorage.setItem(
+    "weshepin_demo_orders",
+    JSON.stringify(orders)
+  );
+
+  toast("Demo sipariş oluşturuldu: "+order.id);
+  cart=[];
+  saveCart();
+  renderCart();
+};$("checkout").onclick=()=>{
+  if(!cart.length){
+    toast("Önce sepete bir ürün ekle.");
+    return;
+  }
+
+  const orders=JSON.parse(
+    localStorage.getItem("weshepin_demo_orders")||"[]"
+  );
+
+  const order={
+    id:"DEMO-"+Date.now(),
+    date:new Date().toLocaleString("tr-TR"),
+    items:cart.map(item=>{
+      const p=products.find(x=>String(x.id)===String(item.id));
+      return p?{
+        name:p.name,
+        detail:p.detail,
+        price:p.price,
+        qty:item.qty
+      }:null;
+    }).filter(Boolean),
+    status:"Sipariş alındı",
+    demo:true
+  };
+
+  orders.unshift(order);
+  localStorage.setItem(
+    "weshepin_demo_orders",
+    JSON.stringify(orders)
+  );
+
+  toast("Demo sipariş oluşturuldu: "+order.id);
+  cart=[];
+  saveCart();
+  renderCart();
+}; if(!cart.length){     toast("Önce sepete bir ürün ekle.");     return;   }   const orders=JSON.parse(localStorage.getItem("weshepin_demo_orders")||"[]");   const order={     id:"DEMO-"+Date.now(),     date:new Date().toLocaleString("tr-TR"),     items:cart.map(item=>{       const p=products.find(x=>String(x.id)===String(item.id));       return p?{name:p.name,detail:p.detail,price:p.price,qty:item.qty}:null;     }).filter(Boolean),     status:"Demo sipariş — ödeme alınmadı"   };   orders.unshift(order);   localStorage.setItem("weshepin_demo_orders",JSON.stringify(orders));   toast("Demo sipariş kaydedildi: "+order.id);   cart=[];   saveCart();   renderCart(); };
 try{$("supabaseUrlInput").value=localStorage.getItem(URL_STORAGE)||"";$("supabaseKeyInput").value=localStorage.getItem(KEY_STORAGE)||"";const saved=JSON.parse(localStorage.getItem("gamepinVaultDemoCart")||"[]");if(Array.isArray(saved))cart=saved.filter(x=>x&&x.id!=null&&Number.isInteger(x.qty)&&x.qty>0)}catch(_){}
 function normalizeCategory(game){const g=String(game||"").toLocaleLowerCase("tr-TR");if(g.includes("pubg"))return "PUBG Mobile";if(g.includes("valorant"))return "Valorant";if(g.includes("kart"))return "Oyun Kartları";return "Oyun Kartları"}
 function categoryIcon(game){const g=String(game||"").toLocaleLowerCase("tr-TR");if(g.includes("pubg"))return "🎯";if(g.includes("valorant"))return "⚔️";return "🎮"}
@@ -181,8 +253,11 @@ function renderDemoOrderHistory() {
   if (!root) return;
 
   let orders = [];
+
   try {
-    orders = JSON.parse(localStorage.getItem("weshepin_demo_orders") || "[]");
+    orders = JSON.parse(
+      localStorage.getItem("weshepin_demo_orders") || "[]"
+    );
   } catch (e) {}
 
   root.innerHTML = "";
@@ -192,32 +267,92 @@ function renderDemoOrderHistory() {
     return;
   }
 
+  const statuses = [
+    "Sipariş alındı",
+    "Hazırlanıyor",
+    "Tamamlandı"
+  ];
+
   orders.forEach(order => {
     const card = document.createElement("div");
-    card.style.cssText = "padding:12px;margin:10px 0;border:1px solid #c9a227;border-radius:10px";
+
+    card.style.cssText =
+      "padding:15px;margin:12px 0;border:1px solid #ffdf00;border-radius:14px;background:#102f6b";
 
     const title = document.createElement("h3");
-    title.textContent = order.id || "Demo sipariş";
+    title.textContent = order.id;
 
     const date = document.createElement("p");
-    date.textContent = order.date || "";
+    date.textContent = "Tarih: " + order.date;
 
-    const status = document.createElement("p");
-    status.textContent = order.status || "Demo sipariş — ödeme alınmadı";
+    const demoInfo = document.createElement("p");
+    demoInfo.textContent =
+      "DEMO SİPARİŞ · Ödeme ve teslimat yapılmadı";
+    demoInfo.style.color = "#ffdf00";
+
+    const statusTitle = document.createElement("strong");
+    statusTitle.textContent = "Sipariş durumu:";
+
+    const status = document.createElement("select");
+    status.style.cssText =
+      "display:block;width:100%;padding:12px;margin:10px 0;background:#071b49;color:white;border:1px solid #ffdf00;border-radius:9px";
+
+    statuses.forEach(value => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      status.appendChild(option);
+    });
+
+    status.value = statuses.includes(order.status)
+      ? order.status
+      : "Sipariş alındı";
+
+    status.addEventListener("change", () => {
+      const current = JSON.parse(
+        localStorage.getItem("weshepin_demo_orders") || "[]"
+      );
+
+      const found = current.find(x => x.id === order.id);
+
+      if (found) {
+        found.status = status.value;
+        localStorage.setItem(
+          "weshepin_demo_orders",
+          JSON.stringify(current)
+        );
+        toast("Demo sipariş durumu güncellendi.");
+      }
+    });
 
     const items = document.createElement("p");
-    items.textContent = (order.items || []).map(i => i.name + " × " + i.qty).join(", ");
+    items.textContent = "Ürünler: " +
+      (order.items || []).map(
+        i => i.name + " × " + i.qty
+      ).join(", ");
 
-    card.append(title, date, status, items);
+    card.append(
+      title,
+      date,
+      demoInfo,
+      statusTitle,
+      status,
+      items
+    );
+
     root.appendChild(card);
   });
 }
 
-document.getElementById("ordersOpen").addEventListener("click", function() {
-  setTimeout(renderDemoOrderHistory, 50);
-});
+document.getElementById("ordersOpen").addEventListener(
+  "click",
+  renderDemoOrderHistory
+);
 
-document.getElementById("refreshDemoOrders").addEventListener("click", renderDemoOrderHistory);
+document.getElementById("refreshDemoOrders").addEventListener(
+  "click",
+  renderDemoOrderHistory
+);
 </script>
 </body>
 </html>
